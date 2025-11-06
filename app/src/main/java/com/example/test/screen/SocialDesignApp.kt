@@ -10,12 +10,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.test.component.BottomNavigationBar
+import com.example.test.component.TopNavBar
 import com.example.test.utils.MenuItem
 
 @Composable
 fun SocialDesignApp() {
     val navController = rememberNavController()
     Scaffold(
+        topBar = { TopNavBar(navController) },
         modifier = Modifier.fillMaxSize(),
         bottomBar = { BottomNavigationBar(navController) }
     ) { innerPadding ->
