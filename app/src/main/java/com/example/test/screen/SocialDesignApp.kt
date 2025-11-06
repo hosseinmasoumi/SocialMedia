@@ -9,18 +9,27 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.test.component.BottomNavigationBar
+import com.example.test.utils.MenuItem
 
 @Composable
 fun SocialDesignApp() {
     val navController = rememberNavController()
-    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        bottomBar = { BottomNavigationBar(navController) }
+    ) { innerPadding ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
             NavHost(navController = navController, startDestination = "home") {
-                composable("home") { HomeScreen() }
+                composable(MenuItem.Home.route) { HomeScreen(navController) }
+                composable(MenuItem.Explore.route) { ExploreScreen(navController) }
+                composable(MenuItem.Add.route) { AddScreen(navController) }
+                composable(MenuItem.Activities.route) { ActivitiesScreen(navController) }
+                composable(MenuItem.Profile.route) { ProfileScreen(navController) }
             }
         }
     }
