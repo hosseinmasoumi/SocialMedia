@@ -17,7 +17,7 @@ import com.example.test.utils.MenuItem
 fun SocialDesignApp() {
     val navController = rememberNavController()
     Scaffold(
-        topBar = { TopNavBar(navController) },
+        topBar = { TopNavBar() },
         modifier = Modifier.fillMaxSize(),
         bottomBar = { BottomNavigationBar(navController) }
     ) { innerPadding ->
