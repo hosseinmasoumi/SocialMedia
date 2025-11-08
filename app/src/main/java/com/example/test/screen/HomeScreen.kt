@@ -17,9 +17,7 @@ fun HomeScreen(navController: NavHostController) {
     Column {
         StoriesView(navController)
         Spacer(modifier = Modifier.height(7.dp))
-        HorizontalDivider(
-            color = Color.Gray, thickness = 1.dp
-        )
+        HorizontalDivider(color = Color.Gray, thickness = 1.dp)
         Spacer(modifier = Modifier.height(7.dp))
         PostsView(navController)
 
