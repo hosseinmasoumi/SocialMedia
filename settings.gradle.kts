@@ -42,6 +42,7 @@ dependencyResolutionManagement {
         maven { url = uri("https://maven.myket.ir") }
         // اختیاری: مخزن ملی ایران
         // maven { url = uri("https://repo.iranrepo.ir/repository/maven-public/") }
+        maven { url =uri("https://jitpack.io") }
 
         // اختیاری: مخزن Snapshot (برای لایبرری‌هایی که نسخه Snapshot دارند)
         // maven { url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/") }

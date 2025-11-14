@@ -20,6 +20,7 @@ fun BottomNavigationBar(navController: NavHostController) {
         MenuItem.Profile,
 
         MenuItem.Activities,
+
         MenuItem.Explore,
 
         MenuItem.Add,
@@ -28,6 +29,9 @@ fun BottomNavigationBar(navController: NavHostController) {
 
         )
     var selectedRoute by remember { mutableStateOf(MenuItem.Home.route) }
+
+
+
     NavigationBar {
         menu.forEach { item ->
             NavigationBarItem(icon = {

@@ -15,6 +15,10 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,11 +26,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.test.data.MockDataRepository
 import com.example.test.data.MockNameRepository
 
 @Composable
 fun StoriesRow(navController: NavHostController) {
-    LazyRow {
+    LazyRow(modifier = Modifier.padding(5.dp)) {
         // آیتم اول - دکمه اضافه کردن استوری
         item {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -36,8 +41,7 @@ fun StoriesRow(navController: NavHostController) {
                     modifier = Modifier.padding(3.dp)
                 ) {
                     Box(
-                        modifier = Modifier.size(80.dp),
-                        contentAlignment = Alignment.Center
+                        modifier = Modifier.size(80.dp), contentAlignment = Alignment.Center
                     ) {
                         Image(
                             painter = painterResource(R.drawable.star_on),
@@ -53,7 +57,8 @@ fun StoriesRow(navController: NavHostController) {
         }
 
         // استوری‌های دیگر کاربران
-        items(30) {
+        items(30) { index ->
+            var story by remember { mutableStateOf(MockDataRepository.getRandomStory()) }
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Card(
                     shape = CircleShape,
@@ -61,10 +66,9 @@ fun StoriesRow(navController: NavHostController) {
                     modifier = Modifier.padding(3.dp)
                 ) {
                     Box(
-                        modifier = Modifier.size(80.dp),
-                        contentAlignment = Alignment.Center
+                        modifier = Modifier.size(80.dp), contentAlignment = Alignment.Center
                     ) {
-                        // اینجا می‌توانید تصویر پروفایل یا محتوای دیگری بگذارید
+
                     }
                 }
                 Spacer(Modifier.height(2.dp))

@@ -1,6 +1,6 @@
+package com.example.test.data
+
 import androidx.compose.runtime.mutableStateListOf
-import com.example.test.data.MockNameRepository
-import com.example.test.data.Story
 import kotlin.random.Random
 
 class MockDataRepository {
