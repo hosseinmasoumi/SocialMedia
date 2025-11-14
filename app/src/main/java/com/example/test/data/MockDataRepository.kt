@@ -1,9 +1,17 @@
-package com.example.test.data
-
+import androidx.compose.runtime.mutableStateListOf
+import com.example.test.data.MockNameRepository
+import com.example.test.data.Story
 import kotlin.random.Random
 
 class MockDataRepository {
     companion object {
+               private val stories = mutableStateListOf<Story>()
+        private var id: Int = 0
+
+        private fun getId(): Int {
+            id++
+            return id
+        }
 
         private fun getAvatar(): String {
             val gender = if (Random.nextBoolean()) "women" else "men"
@@ -16,6 +24,17 @@ class MockDataRepository {
 
         fun getStoryImage(): String {
             return "https://picsum.photos/id/${Random.nextInt(1, 100)}/540/960"
+        }
+
+        fun getRandomStory(): Story {
+            val result = Story(
+                getId(),
+                MockNameRepository().getRandomName(),
+                getAvatar(),
+                getStoryImage()
+            )
+            stories.add(result)
+            return result
         }
     }
 }

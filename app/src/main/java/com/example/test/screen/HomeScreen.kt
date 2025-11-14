@@ -10,12 +10,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.test.component.PostsView
-import com.example.test.component.StoriesView
+import com.example.test.component.StoriesRow
 
 @Composable
 fun HomeScreen(navController: NavHostController) {
     Column {
-        StoriesView(navController)
+        StoriesRow(navController)
         Spacer(modifier = Modifier.height(7.dp))
         HorizontalDivider(color = Color.Gray, thickness = 1.dp)
         Spacer(modifier = Modifier.height(7.dp))

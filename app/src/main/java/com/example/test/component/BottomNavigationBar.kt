@@ -32,13 +32,18 @@ fun BottomNavigationBar(navController: NavHostController) {
         menu.forEach { item ->
             NavigationBarItem(icon = {
                 Icon(
-                    painterResource(item.icon), contentDescription = item.title
+                    painterResource(item.icon),
+                    contentDescription = item.title
                 )
-            }, label = { Text(item.title) },
-                selected = selectedRoute == item.route, onClick = {
+            },
+                label = { Text(item.title) },
+                selected = selectedRoute == item.route,
+                onClick = {
                 selectedRoute = item.route
-                navController.navigate(item.route) {
-                    popUpTo(navController.graph.findStartDestination().id) { saveState = true }
+                navController.navigate(item.route)
+                {
+                    popUpTo(navController.graph.findStartDestination().id)
+                    { saveState = true }
                     /* ذخیره state صفحه فعلی */
                     launchSingleTop = true
                     //  جلوگیری از ساخت چند نمونه از یک صفحه یعنی اگر چندین بار زد روی یه صفحه ک توش بودیم صفحه الکی ساخته نشه

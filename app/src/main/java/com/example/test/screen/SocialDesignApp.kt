@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+
 import com.example.test.component.BottomNavigationBar
 import com.example.test.component.TopNavBar
 import com.example.test.utils.MenuItem
@@ -19,8 +20,7 @@ fun SocialDesignApp() {
     Scaffold(
         topBar = { TopNavBar() },
         modifier = Modifier.fillMaxSize(),
-        bottomBar = { BottomNavigationBar(navController) }
-    ) { innerPadding ->
+        bottomBar = { BottomNavigationBar(navController) }) { innerPadding ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
