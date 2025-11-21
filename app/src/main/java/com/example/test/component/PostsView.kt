@@ -47,6 +47,8 @@ fun PostsView(navController: NavHostController) {
 fun PostItem(post: Posts, navController: NavHostController) {
     Column {
         PostAuther(post)
+        Spacer(modifier = Modifier.height(5.dp))
+
         PostImage(post)
         PostActions(post)
         PostCaption(post)
