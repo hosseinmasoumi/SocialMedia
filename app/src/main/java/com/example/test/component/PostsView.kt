@@ -93,7 +93,7 @@ fun PostImage(post: Posts) {
             contentDescription = post.username,
             contentScale = ContentScale.FillBounds,
             modifier = Modifier.fillMaxSize(),
-            placeholder = painterResource(R.drawable.loading),
+//            placeholder = painterResource(R.drawable.loading),
             error = painterResource(R.drawable.close)
         )
     }
