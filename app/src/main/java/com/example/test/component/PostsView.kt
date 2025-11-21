@@ -1,5 +1,6 @@
 package com.example.test.component
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -19,9 +21,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil3.compose.AsyncImage
 import com.example.test.R
@@ -42,7 +46,7 @@ fun PostsView(navController: NavHostController) {
 @Composable
 fun PostItem(post: Posts, navController: NavHostController) {
     Column {
-//        PostAuther(post)
+        PostAuther(post)
         Spacer(modifier = Modifier.height(5.dp))
 
         PostImage(post)
@@ -52,6 +56,30 @@ fun PostItem(post: Posts, navController: NavHostController) {
     }
 }
 
+@Composable
+fun PostAuther(post: Posts) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        StoryCircleView(
+            post.profileImage,
+            post.username,
+            50.dp,
+            BorderStroke(2.dp, Color.DarkGray)
+        )
+        Spacer(modifier = Modifier.width(2.dp))
+        Column {
+            Text(post.username)
+            Spacer(modifier = Modifier.height(7.dp))
+            Text("3 Minutes ago", fontSize = 11.sp)
+        }
+        Spacer(modifier = Modifier.weight(1f))
+        IconButton(onClick = {}) {
+            Icon(
+                painter = painterResource(R.drawable.svgrepo),
+                contentDescription = "DSA"
+            )
+        }
+    }
+}
 
 @Composable
 fun PostImage(post: Posts) {
