@@ -3,7 +3,6 @@ package com.example.test.component
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -40,7 +39,7 @@ fun BottomNavigationBar(navController: NavHostController) {
                     contentDescription = item.title
                 )
             },
-                label = { Text(item.title) },
+//                label = { Text(item.title) },
                 selected = selectedRoute == item.route,
                 onClick = {
                 selectedRoute = item.route

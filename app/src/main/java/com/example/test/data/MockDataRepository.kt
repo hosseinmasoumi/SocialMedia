@@ -5,7 +5,8 @@ import kotlin.random.Random
 
 class MockDataRepository {
     companion object {
-               private val stories = mutableStateListOf<Story>()
+        private val stories = mutableStateListOf<Story>()
+        private val post = mutableStateListOf<Posts>()
         private var id: Int = 0
 
         private fun getId(): Int {
@@ -28,12 +29,21 @@ class MockDataRepository {
 
         fun getRandomStory(): Story {
             val result = Story(
+                getId(), MockNameRepository().getRandomName(), getAvatar(), getStoryImage()
+            )
+            stories.add(result)
+            return result
+        }
+
+        fun getPostStory(): Posts {
+            val result = Posts(
                 getId(),
                 MockNameRepository().getRandomName(),
                 getAvatar(),
-                getStoryImage()
+                getImage(),
+                MockStringRepository().getRandomCaption()
             )
-            stories.add(result)
+            post.add(result)
             return result
         }
     }

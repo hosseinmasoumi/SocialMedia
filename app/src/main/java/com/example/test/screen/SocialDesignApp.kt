@@ -25,7 +25,9 @@ fun SocialDesignApp() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
-        ) {
+        )
+        {
+            
             NavHost(navController = navController, startDestination = "home") {
                 composable(MenuItem.Home.route) { HomeScreen(navController) }
                 composable(MenuItem.Explore.route) { ExploreScreen(navController) }

@@ -41,7 +41,7 @@ fun TopNavBar() {
         navigationIcon = {
             IconButton(onClick = { /* TODO */ }) {
                 Icon(
-                    painter = painterResource(id = R.drawable.icon_like),
+                    painter = painterResource(id = R.drawable.outline_add_24),
                     contentDescription = null
                 )
             }
@@ -49,7 +49,7 @@ fun TopNavBar() {
         actions = {
             IconButton(onClick = { /* TODO */ }) {
                 Icon(
-                    painter = painterResource(id = R.drawable.icon_send),
+                    painter = painterResource(id = R.drawable.icon_like),
                     contentDescription = null
                 )
             }

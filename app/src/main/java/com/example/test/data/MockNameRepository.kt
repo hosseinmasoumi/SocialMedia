@@ -57,6 +57,6 @@ class MockNameRepository {
     )
 
     fun getRandomName(): String {
-        return names[Random.nextInt(0, 49)]
+        return names[Random.nextInt(names.size)]
     }
 }

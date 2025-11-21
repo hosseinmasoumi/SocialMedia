@@ -1,6 +1,5 @@
 package com.example.test.component
 
-import android.R
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -15,24 +14,23 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.test.R
 import com.example.test.data.MockDataRepository
 import com.example.test.data.MockNameRepository
 
 @Composable
 fun StoriesRow(navController: NavHostController) {
     LazyRow(modifier = Modifier.padding(5.dp)) {
-        // آیتم اول - دکمه اضافه کردن استوری
         item {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Card(
@@ -41,10 +39,11 @@ fun StoriesRow(navController: NavHostController) {
                     modifier = Modifier.padding(3.dp)
                 ) {
                     Box(
-                        modifier = Modifier.size(80.dp), contentAlignment = Alignment.Center
+                        modifier = Modifier.size(80.dp),
+                        contentAlignment = Alignment.Center
                     ) {
                         Image(
-                            painter = painterResource(R.drawable.star_on),
+                            painter = painterResource(R.drawable.icon_launcher_foreground),
                             contentDescription = "Add Story",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier.fillMaxSize()
@@ -52,28 +51,34 @@ fun StoriesRow(navController: NavHostController) {
                     }
                 }
                 Spacer(Modifier.height(2.dp))
-                Text(MockNameRepository().getRandomName(), color = Color.DarkGray)
+                Text(
+                    text = MockNameRepository().getRandomName(),
+                    color = Color.DarkGray
+                )
             }
         }
 
-        // استوری‌های دیگر کاربران
-        items(30) { index ->
-            var story by remember { mutableStateOf(MockDataRepository.getRandomStory()) }
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Card(
-                    shape = CircleShape,
-                    border = BorderStroke(4.dp, Color.DarkGray),
-                    modifier = Modifier.padding(3.dp)
-                ) {
-                    Box(
-                        modifier = Modifier.size(80.dp), contentAlignment = Alignment.Center
-                    ) {
+        items(50) { _ ->
+            val story = remember { MockDataRepository.getRandomStory() }
 
-                    }
-                }
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                StoryCircleView(
+                    story.profileImage,
+                    story.username,
+                    80.dp,
+                    BorderStroke(4.dp, Color.Red)
+                )
                 Spacer(Modifier.height(2.dp))
-                Text(MockNameRepository().getRandomName(), color = Color.DarkGray)
+                Text(
+                    text = story.username,
+                    color = Color.DarkGray
+                )
             }
         }
     }
+}
+@Preview(showBackground = true)
+@Composable
+fun StoriesRowPreview() {
+    StoriesRow(navController = NavHostController(LocalContext.current))
 }
