@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Icon
@@ -80,9 +81,11 @@ fun PostAuther(post: Posts) {
 
 @Composable
 fun PostImage(post: Posts) {
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .height(270.dp)) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(270.dp)
+    ) {
         AsyncImage(
             model = post.image,
             contentDescription = post.username,
@@ -96,7 +99,13 @@ fun PostImage(post: Posts) {
 
 @Composable
 fun PostCaption(post: Posts) {
-    Text(text = MockStringRepository().getRandomCaption())
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 10.dp)
+    ) {
+        Text(text = MockStringRepository().getRandomCaption())
+    }
 }
 
 @Composable
