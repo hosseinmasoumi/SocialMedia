@@ -4,11 +4,14 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-11-19T08:31:40.483788400Z">
+        <DropdownSelection timestamp="2025-11-21T22:39:55.411872200Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=E:\AndroidStudio\AndroidEmulators\Pixel_9.avd" />
+              <DeviceId pluginId="FirebaseDirectAccess" identifier="reservation=projects/translate-5c9933fa/deviceSessions/session-2qhlwd5unrv3s" />
             </handle>
+            <template>
+              <DeviceId pluginId="FirebaseDirectAccess" type="TEMPLATE" identifier="model_id=samsung_lab_e3q/34" />
+            </template>
           </Target>
         </DropdownSelection>
         <DialogSelection />
