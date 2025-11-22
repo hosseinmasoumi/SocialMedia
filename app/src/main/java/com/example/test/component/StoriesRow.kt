@@ -66,7 +66,7 @@ fun StoriesRow(navController: NavHostController) {
                     story.profileImage,
                     story.username,
                     80.dp,
-                    BorderStroke(4.dp, Color.Red)
+                    BorderStroke(3.dp, Color.Red)
                 )
                 Spacer(Modifier.height(2.dp))
                 Text(
