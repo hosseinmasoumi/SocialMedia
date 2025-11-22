@@ -26,14 +26,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil3.compose.AsyncImage
 import com.example.test.R
 import com.example.test.data.MockDataRepository
-import com.example.test.data.MockStringRepository
 import com.example.test.data.Posts
 
 @Composable
@@ -54,7 +53,7 @@ fun PostItem(post: Posts, navController: NavHostController) {
 
         PostImage(post)
         PostActions(post)
-        PostCaption()
+        PostCaption(post)
         Spacer(modifier = Modifier.height(16.dp))
     }
 }
@@ -103,13 +102,21 @@ fun PostImage(post: Posts) {
 }
 
 @Composable
-fun PostCaption() {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 10.dp, end = 10.dp)
-    ) {
-        Text(text = MockStringRepository().getRandomCaption(), fontFamily = FontFamily.SansSerif)
+fun PostCaption(post: Posts) {
+    Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)) {
+        Text(
+            post.username,
+            fontFamily = FontFamily.SansSerif,
+            fontWeight = FontWeight.Bold,
+            fontSize = 15.sp,
+        )
+        Spacer(modifier = Modifier.height(2.dp))
+        Text(
+            post.caption,
+            fontSize = 12.sp,
+            color = Color.DarkGray,
+            fontWeight = FontWeight.Normal
+        )
     }
 }
 
@@ -163,8 +170,3 @@ fun PostActions(post: Posts) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun Cap() {
-    PostCaption()
-}
