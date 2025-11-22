@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -114,16 +115,21 @@ fun PostCaption() {
 
 @Composable
 fun PostActions(post: Posts) {
-
+    var like by rememberSaveable { mutableStateOf(false) }
+    var save by rememberSaveable { mutableStateOf(false) }
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        IconButton(onClick = { }) {
+        IconButton(onClick = { like = !like }) {
             Icon(
-                painter = painterResource(R.drawable.heart),
-                contentDescription = "Like"
+                painter = painterResource(
+                    if (like) R.drawable.heart_red
+                    else
+                        R.drawable.heart
+                ),
+                contentDescription = "Like", tint = if (like) Color.Red else Color.Black
             )
         }
 
@@ -144,10 +150,12 @@ fun PostActions(post: Posts) {
             )
         }
         Spacer(modifier = Modifier.weight(1f))
-        IconButton(onClick = {}) {
+        IconButton(onClick = { save = !save }) {
             Icon(
                 painter = painterResource(
-                    R.drawable.bookmark
+                    if (save) R.drawable.vectorfil
+                    else
+                        R.drawable.bookmark
                 ),
                 contentDescription = "Send",
             )
@@ -157,6 +165,6 @@ fun PostActions(post: Posts) {
 
 @Preview(showBackground = true)
 @Composable
-fun Cap(){
+fun Cap() {
     PostCaption()
 }
