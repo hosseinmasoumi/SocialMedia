@@ -24,6 +24,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -51,7 +53,7 @@ fun PostItem(post: Posts, navController: NavHostController) {
 
         PostImage(post)
         PostActions(post)
-        PostCaption(post)
+        PostCaption()
         Spacer(modifier = Modifier.height(16.dp))
     }
 }
@@ -100,13 +102,13 @@ fun PostImage(post: Posts) {
 }
 
 @Composable
-fun PostCaption(post: Posts) {
+fun PostCaption() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 10.dp)
+            .padding(start = 10.dp, end = 10.dp)
     ) {
-        Text(text = MockStringRepository().getRandomCaption())
+        Text(text = MockStringRepository().getRandomCaption(), fontFamily = FontFamily.SansSerif)
     }
 }
 
@@ -151,4 +153,10 @@ fun PostActions(post: Posts) {
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun Cap(){
+    PostCaption()
 }
