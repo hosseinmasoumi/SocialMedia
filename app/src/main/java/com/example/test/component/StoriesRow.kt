@@ -27,6 +27,7 @@ import androidx.navigation.NavHostController
 import com.example.test.R
 import com.example.test.data.MockDataRepository
 import com.example.test.data.MockNameRepository
+import com.example.test.data.Story
 
 @Composable
 fun StoriesRow(navController: NavHostController) {
@@ -61,19 +62,7 @@ fun StoriesRow(navController: NavHostController) {
         items(50) { _ ->
             val story = remember { MockDataRepository.getRandomStory() }
 
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                StoryCircleView(
-                    story.profileImage,
-                    story.username,
-                    80.dp,
-                    BorderStroke(3.dp, Color.Red)
-                )
-                Spacer(Modifier.height(2.dp))
-                Text(
-                    text = story.username,
-                    color = Color.DarkGray
-                )
-            }
+            StoryItem(story)
         }
     }
 }
@@ -81,4 +70,23 @@ fun StoriesRow(navController: NavHostController) {
 @Composable
 fun StoriesRowPreview() {
     StoriesRow(navController = NavHostController(LocalContext.current))
+}
+
+
+@Composable
+fun StoryItem(story: Story) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        StoryCircleView(
+            story.profileImage,
+            story.username,
+            80.dp,
+            BorderStroke(3.dp, Color.Red)
+        )
+        Spacer(Modifier.height(2.dp))
+        Text(
+            text = story.username,
+            color = Color.DarkGray
+        )
+    }
+
 }
