@@ -46,5 +46,9 @@ class MockDataRepository {
             post.add(result)
             return result
         }
+
+        fun getStory(id: Int): Story? {
+            return stories.firstOrNull { it.id == id }
+        }
     }
 }

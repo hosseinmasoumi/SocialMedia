@@ -2,6 +2,7 @@ package com.example.test.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -40,8 +41,7 @@ fun StoriesRow(navController: NavHostController) {
                     modifier = Modifier.padding(3.dp)
                 ) {
                     Box(
-                        modifier = Modifier.size(80.dp),
-                        contentAlignment = Alignment.Center
+                        modifier = Modifier.size(80.dp), contentAlignment = Alignment.Center
                     ) {
                         Image(
                             painter = painterResource(R.drawable.icon_launcher_foreground),
@@ -53,8 +53,7 @@ fun StoriesRow(navController: NavHostController) {
                 }
                 Spacer(Modifier.height(2.dp))
                 Text(
-                    text = MockNameRepository().getRandomName(),
-                    color = Color.DarkGray
+                    text = MockNameRepository().getRandomName(), color = Color.DarkGray
                 )
             }
         }
@@ -62,10 +61,11 @@ fun StoriesRow(navController: NavHostController) {
         items(50) { _ ->
             val story = remember { MockDataRepository.getRandomStory() }
 
-            StoryItem(story)
+            StoryItem(story, navController)
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun StoriesRowPreview() {
@@ -74,18 +74,17 @@ fun StoriesRowPreview() {
 
 
 @Composable
-fun StoryItem(story: Story) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+fun StoryItem(story: Story, navController: NavHostController) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.clickable{navController.navigate("story/" +story.id)}
+    ) {
         StoryCircleView(
-            story.profileImage,
-            story.username,
-            80.dp,
-            BorderStroke(3.dp, Color.Red)
+            story.profileImage, story.username, 80.dp, BorderStroke(3.dp, Color.Red)
         )
         Spacer(Modifier.height(2.dp))
         Text(
-            text = story.username,
-            color = Color.DarkGray
+            text = story.username, color = Color.DarkGray
         )
     }
 
