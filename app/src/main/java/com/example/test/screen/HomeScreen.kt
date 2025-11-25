@@ -15,12 +15,12 @@ import com.example.test.component.StoriesRow
 @Composable
 fun HomeScreen(navController: NavHostController) {
     Column {
+        
         StoriesRow(navController)
         Spacer(modifier = Modifier.height(7.dp))
         HorizontalDivider(color = Color.Gray, thickness = 1.dp)
         Spacer(modifier = Modifier.height(7.dp))
         PostsView(navController)
-
 
 
     }

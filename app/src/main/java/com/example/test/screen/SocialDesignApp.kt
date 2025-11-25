@@ -36,7 +36,8 @@ fun SocialDesignApp() {
                 composable(MenuItem.Activities.route) { ActivitiesScreen(navController) }
                 composable(MenuItem.Profile.route) { ProfileScreen(navController) }
                 composable(
-                    "story/{id}", arguments = listOf(navArgument("id") { type = NavType.IntType })
+                    "story/{id}"
+                    , arguments = listOf(navArgument("id") { type = NavType.IntType })
                 ) {
                     val id = it.arguments?.getInt("id") ?: 0
                     SingeStoryView(id, navController)

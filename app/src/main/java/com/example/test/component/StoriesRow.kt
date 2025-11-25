@@ -20,7 +20,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,28 +33,7 @@ import com.example.test.data.Story
 fun StoriesRow(navController: NavHostController) {
     LazyRow(modifier = Modifier.padding(5.dp)) {
         item {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Card(
-                    shape = CircleShape,
-                    border = BorderStroke(4.dp, Color.DarkGray),
-                    modifier = Modifier.padding(3.dp)
-                ) {
-                    Box(
-                        modifier = Modifier.size(80.dp), contentAlignment = Alignment.Center
-                    ) {
-                        Image(
-                            painter = painterResource(R.drawable.icon_launcher_foreground),
-                            contentDescription = "Add Story",
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.fillMaxSize()
-                        )
-                    }
-                }
-                Spacer(Modifier.height(2.dp))
-                Text(
-                    text = MockNameRepository().getRandomName(), color = Color.DarkGray
-                )
-            }
+            MyStory()
         }
 
         items(50) { _ ->
@@ -66,19 +44,20 @@ fun StoriesRow(navController: NavHostController) {
     }
 }
 
+/*
 @Preview(showBackground = true)
 @Composable
 fun StoriesRowPreview() {
     StoriesRow(navController = NavHostController(LocalContext.current))
 }
 
+*/
 
 @Composable
 fun StoryItem(story: Story, navController: NavHostController) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.clickable{navController.navigate("story/" +story.id)}
-    ) {
+        modifier = Modifier.clickable { navController.navigate("story/" + story.id) }) {
         StoryCircleView(
             story.profileImage, story.username, 80.dp, BorderStroke(3.dp, Color.Red)
         )
@@ -88,4 +67,56 @@ fun StoryItem(story: Story, navController: NavHostController) {
         )
     }
 
+}
+
+@Composable
+fun MyStory() {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Box(
+            modifier = Modifier.size(86.dp), // اندازه کل با احتساب border
+            contentAlignment = Alignment.Center
+        ) {
+            Card(
+                shape = CircleShape,
+                border = BorderStroke(4.dp, Color.DarkGray),
+                modifier = Modifier
+                    .size(80.dp)
+                    .padding(3.dp)
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.icon_launcher_foreground),
+                    contentDescription = "Add Story",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
+
+            // دکمه روی بوردر
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(2.dp), // تنظیم موقعیت روی بوردر
+                contentAlignment = Alignment.BottomEnd
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.button),
+                    contentDescription = "Add Story Button",
+                    modifier = Modifier.size(24.dp)
+                )
+            }
+        }
+        Spacer(Modifier.height(2.dp))
+        Text(
+            text = MockNameRepository().getRandomName(), color = Color.DarkGray
+        )
+    }
+
+}
+
+
+
+@Preview(showBackground = true)
+@Composable
+fun MyPreview() {
+    MyStory()
 }
