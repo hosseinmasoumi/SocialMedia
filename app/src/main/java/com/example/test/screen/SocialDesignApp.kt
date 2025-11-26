@@ -15,20 +15,19 @@ import androidx.navigation.navArgument
 import com.example.test.component.BottomNavigationBar
 import com.example.test.component.TopNavBar
 import com.example.test.utils.MenuItem
-
 @Composable
 fun SocialDesignApp() {
     val navController = rememberNavController()
     Scaffold(
         topBar = { TopNavBar() },
         modifier = Modifier.fillMaxSize(),
-        bottomBar = { BottomNavigationBar(navController) }) { innerPadding ->
+        bottomBar = { BottomNavigationBar(navController) }
+    ) { innerPadding ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-
             NavHost(navController = navController, startDestination = "home") {
                 composable(MenuItem.Home.route) { HomeScreen(navController) }
                 composable(MenuItem.Explore.route) { ExploreScreen(navController) }
@@ -36,8 +35,8 @@ fun SocialDesignApp() {
                 composable(MenuItem.Activities.route) { ActivitiesScreen(navController) }
                 composable(MenuItem.Profile.route) { ProfileScreen(navController) }
                 composable(
-                    "story/{id}"
-                    , arguments = listOf(navArgument("id") { type = NavType.IntType })
+                    "story/{id}",
+                    arguments = listOf(navArgument("id") { type = NavType.IntType })
                 ) {
                     val id = it.arguments?.getInt("id") ?: 0
                     SingeStoryView(id, navController)
