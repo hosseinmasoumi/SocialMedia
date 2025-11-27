@@ -17,18 +17,12 @@ import com.example.test.utils.MenuItem
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
     val menu = listOf(
-
         MenuItem.Profile,
-
         MenuItem.Activities,
-
-
         MenuItem.Add,
         MenuItem.Explore,
+        MenuItem.Home)
 
-        MenuItem.Home
-
-    )
     var selectedRoute by remember { mutableStateOf(MenuItem.Home.route) }
 
 

@@ -24,7 +24,7 @@ fun ExploreScreen(navController: NavHostController) {
 
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(3.dp),
-        horizontalArrangement = Arrangement.spacedBy(3.dp)
+        horizontalArrangement = Arrangement.spacedBy(3.dp)//فاصله بین عکسا
     ) {
 
         items(images.size) { index ->
