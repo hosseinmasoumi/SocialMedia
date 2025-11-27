@@ -51,7 +51,8 @@ fun ActivitiesRow(item: ActivitiesItem) {
         modifier = Modifier
             .fillMaxSize()
             .padding(8.dp)
-    ) {
+    )
+    {
         StoryCircleView(
             item.userProfile,
             item.username,
@@ -77,9 +78,12 @@ fun ActivitiesRow(item: ActivitiesItem) {
             Text(item.time + " ago", fontSize = 11.sp)
         }
         Spacer(modifier = Modifier.weight(1f))
+
         if (item.type == ActivitiyType.Follow) {
-            Button(onClick = {}, modifier = Modifier.size(40.dp)) { Text("Follow back", fontSize = 15.sp) }
-        } else {
+            Button(onClick = {},)
+            { Text("Follow back", fontSize = 13.sp) }
+        }
+        else {
             AsyncImage(
                 model = item.postThumbnail,
                 contentDescription = item.username,

@@ -59,7 +59,7 @@ fun StoryItem(story: Story, navController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.clickable { navController.navigate("story/" + story.id) }) {
         StoryCircleView(
-            story.profileImage, story.username, 80.dp, BorderStroke(3.dp, Color.Red)
+            story.profileImage, story.username, 80.dp, BorderStroke(2.dp, Color.Red)
         )
         Spacer(Modifier.height(2.dp))
         Text(
