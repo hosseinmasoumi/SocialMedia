@@ -14,7 +14,7 @@ class MockDataRepository {
             return id
         }
 
-        private fun getAvatar(): String {
+        fun getAvatar(): String {
             val gender = if (Random.nextBoolean()) "women" else "men"
             return "https://randomuser.me/api/portraits/${gender}/${Random.nextInt(1, 100)}.jpg"
         }
@@ -49,6 +49,28 @@ class MockDataRepository {
 
         fun getStory(id: Int): Story? {
             return stories.firstOrNull { it.id == id }
+        }
+
+        fun getRandomActivites(): ActivitiesItem {
+            return ActivitiesItem(
+                MockNameRepository().getRandomName(),
+                getAvatar(),
+                getRandomActivitesType(),
+            "${Random.nextInt(1, 23)}h",
+            getImage()
+            )
+        }
+
+        fun getRandomActivitesType(): ActivitiyType {
+            val rnd = Random.nextInt(1, 100)
+            return if (rnd % 5 == 0) {
+                ActivitiyType.Comment
+
+            } else if (rnd % 3 == 0) {
+                ActivitiyType.Follow
+            } else {
+                ActivitiyType.Like
+            }
         }
     }
 }
