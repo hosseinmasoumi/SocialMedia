@@ -80,7 +80,7 @@ fun ActivitiesRow(item: ActivitiesItem) {
         Spacer(modifier = Modifier.weight(1f))
 
         if (item.type == ActivitiyType.Follow) {
-            Button(onClick = {},)
+            Button(onClick = {})
             { Text("Follow back", fontSize = 13.sp) }
         }
         else {
