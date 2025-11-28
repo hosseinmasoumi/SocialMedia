@@ -32,8 +32,8 @@ fun ProfileScreen(navController: NavHostController) {
         // Fixed Header Section
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
-        ) {
+            modifier = Modifier.fillMaxWidth())
+        {
             StoryCircleView(
                 "https://amirrezabajalan.ir/wp-content/uploads/elementor/thumbs/%D8%A7%D9%85%DB%8C%D8%B1%D8%B1%D8%B6%D8%A7-%D8%A8%D8%A7%D8%AC%D9%84%D8%A7%D9%86-r66aemtrkzv2lg7hfd3sm8d0r218mz9ee8l4t0m2fk.webp",
                 "Amir",
@@ -55,14 +55,10 @@ fun ProfileScreen(navController: NavHostController) {
         NameBio()
 
         Spacer(modifier = Modifier.height(4.dp))
-        Button(
-            onClick = {},
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text("Following me")
-        }
+        Button(onClick = {}, modifier = Modifier.fillMaxWidth())
+        { Text("Following me") }
 
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(3.dp))
 
         // Scrollable Posts Section
         ExploreScreen(navController)
