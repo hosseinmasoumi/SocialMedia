@@ -44,17 +44,23 @@ fun ProfileScreen(navController: NavHostController) {
             Image(
                 painter = painterResource(R.drawable.my_image_1),
                 contentDescription = null,
-                modifier = Modifier.clickable { navController.navigate("story/1") }
+                modifier = Modifier
                     .size(85.dp)
-                    .clip(CircleShape),
+                    .clip(CircleShape)
+                    .clickable {
+                        val id = R.drawable.my_image_1
+                        navController.navigate("profile_image/$id")
+                    },
                 contentScale = ContentScale.Crop
             )
+
 
             Spacer(modifier = Modifier.size(16.dp))
 
             // Stats
             Row(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .padding(top = 10.dp),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
