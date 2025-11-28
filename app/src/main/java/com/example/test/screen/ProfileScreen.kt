@@ -1,8 +1,8 @@
 package com.example.test.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -32,43 +33,53 @@ fun ProfileScreen(navController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(5.dp)
+            .padding(10.dp)
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
-        )
-        {
-            Box(
-                modifier = Modifier.padding(top = 10.dp, start = 10.dp)
-                    .clip(RoundedCornerShape(50.dp)) // 🔹 گوشه‌های گرد
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.my_image_1),
-                    contentDescription = null,
-                    modifier = Modifier.size(80.dp),
-                    contentScale = ContentScale.Crop
-                )
-            }
 
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // Avatar
+            Image(
+                painter = painterResource(R.drawable.my_image_1),
+                contentDescription = null,
+                modifier = Modifier.clickable { navController.navigate("story/1") }
+                    .size(85.dp)
+                    .clip(CircleShape),
+                contentScale = ContentScale.Crop
+            )
+
+            Spacer(modifier = Modifier.size(16.dp))
+
+            // Stats
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
+                modifier = Modifier.fillMaxWidth()
+                    .padding(top = 10.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                ProfileState("posts", "20")
+                ProfileState("Posts", "20")
                 ProfileState("Following", "100k")
-                ProfileState("Follow", "50k")
+                ProfileState("Followers", "50k")
             }
         }
 
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(8.dp))
+
         NameBio()
 
-        Spacer(modifier = Modifier.height(4.dp))
-        Button(onClick = {}, modifier = Modifier.fillMaxWidth())
-        { Text("Following me") }
+        Spacer(modifier = Modifier.height(8.dp))
 
-        Spacer(modifier = Modifier.height(3.dp))
+        Button(
+            onClick = { /* TODO */ },
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(50)
+        ) {
+            Text("Following me")
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
 
         // Scrollable Posts Section
         ExploreScreen(navController)
@@ -77,22 +88,20 @@ fun ProfileScreen(navController: NavHostController) {
 
 @Composable
 fun NameBio() {
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 6.dp)
     ) {
-        Column {
-            Text(text = "Hossein Masoumi", fontWeight = FontWeight.Bold)
-            Spacer(modifier = Modifier.height(2.dp))
-            Text(text = "android Developer Kotlin")
-        }
+        Text(text = "Hossein Masoumi", fontWeight = FontWeight.Bold)
+        Spacer(modifier = Modifier.height(2.dp))
+        Text(text = "Android Developer Kotlin")
     }
 }
 
 @Composable
 fun ProfileState(label: String, count: String) {
-    Column {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(count, fontWeight = FontWeight.Bold)
         Text(label)
     }
@@ -100,6 +109,6 @@ fun ProfileState(label: String, count: String) {
 
 @Preview(showBackground = true)
 @Composable
-fun Per(modifier: Modifier = Modifier) {
+fun ProfileScreenPreview() {
     ProfileScreen(navController = rememberNavController())
 }
