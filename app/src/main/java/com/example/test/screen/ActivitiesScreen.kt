@@ -81,7 +81,7 @@ fun ActivitiesRow(item: ActivitiesItem) {
 
         if (item.type == ActivitiyType.Follow) {
             Button(onClick = {})
-            { Text("Follow back", fontSize = 13.sp) }
+            { Text("Follow back", fontSize = 12.sp) }
         }
         else {
             AsyncImage(

@@ -34,7 +34,6 @@ fun ProfileScreen(navController: NavHostController) {
             .fillMaxSize()
             .padding(5.dp)
     ) {
-        // Fixed Header Section
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
