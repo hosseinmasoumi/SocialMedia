@@ -67,7 +67,7 @@ fun FullImageScreen(resId: Int, navController: NavHostController) {
         contentDescription = null,
         modifier = Modifier
             .fillMaxSize()
-            .clickable { navController.popBackStack() },
+            .clickable { navController.popBackStack()},
         contentScale = ContentScale.Crop
     )
 }

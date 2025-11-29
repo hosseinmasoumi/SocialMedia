@@ -3,6 +3,7 @@ package com.example.test.screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -30,65 +31,70 @@ import com.example.test.R
 
 @Composable
 fun ProfileScreen(navController: NavHostController) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(10.dp)
-    ) {
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+    Column(modifier = Modifier.fillMaxSize()) {
+        // بخش پروفایل
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
         ) {
-            // Avatar
-            Image(
-                painter = painterResource(R.drawable.my_image_1),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(85.dp)
-                    .clip(CircleShape)
-                    .clickable {
-                        val id = R.drawable.my_image_1
-                        navController.navigate("profile_image/$id")
-                    },
-                contentScale = ContentScale.Crop
-            )
+            Column {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    // Avatar
+                    Image(
+                        painter = painterResource(R.drawable.my_image_1),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(85.dp)
+                            .clip(CircleShape)
+                            .clickable {
+                                val id = R.drawable.my_image_1
+                                navController.navigate("profile_image/$id")
+                            },
+                        contentScale = ContentScale.Crop
+                    )
 
+                    Spacer(modifier = Modifier.size(16.dp))
 
-            Spacer(modifier = Modifier.size(16.dp))
+                    // Stats
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 10.dp),
+                        horizontalArrangement = Arrangement.SpaceEvenly,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        ProfileState("Posts", "20")
+                        ProfileState("Following", "100k")
+                        ProfileState("Followers", "50k")
+                    }
+                }
 
-            // Stats
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 10.dp),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                ProfileState("Posts", "20")
-                ProfileState("Following", "100k")
-                ProfileState("Followers", "50k")
+                Spacer(modifier = Modifier.height(8.dp))
+
+                NameBio()
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Button(
+                    onClick = { /* TODO */ },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(50)
+                ) {
+                    Text("Following me")
+                }
             }
         }
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        NameBio()
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Button(
-            onClick = { /* TODO */ },
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(50)
-        ) {
-            Text("Following me")
+        // بخش عکس‌ها
+        Box(modifier = Modifier.fillMaxSize()) {
+            ExploreScreen(navController)
         }
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        // Scrollable Posts Section
-        ExploreScreen(navController)
     }
 }
 

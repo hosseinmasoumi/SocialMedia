@@ -61,15 +61,20 @@ class MockDataRepository {
             )
         }
 
-        fun getRandomActivitesType(): ActivitiyType {
+        fun getRandomActivitesType(): ActivityType {
             val rnd = Random.nextInt(1, 100)
             return if (rnd % 5 == 0) {
-                ActivitiyType.Comment
+                ActivityType.Comment
 
-            } else if (rnd % 3 == 0) {
-                ActivitiyType.Follow
-            } else {
-                ActivitiyType.Like
+            }
+            else if (rnd % 3 == 0) {
+                ActivityType.Follow
+            }
+            else if (rnd % 2 == 0) {
+                ActivityType.FollowBack
+            }
+            else {
+                ActivityType.Like
             }
         }
     }

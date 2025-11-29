@@ -1,7 +1,8 @@
 package com.example.test.data
 
-enum class ActivitiyType {
+enum class ActivityType {
     Like,
     Comment,
-    Follow
+    Follow,
+    FollowBack
 }

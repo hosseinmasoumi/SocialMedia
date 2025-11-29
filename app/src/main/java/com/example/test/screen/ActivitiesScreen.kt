@@ -29,7 +29,7 @@ import coil3.compose.AsyncImage
 import com.example.test.R
 import com.example.test.component.StoryCircleView
 import com.example.test.data.ActivitiesItem
-import com.example.test.data.ActivitiyType
+import com.example.test.data.ActivityType
 import com.example.test.data.MockDataRepository
 
 @Composable
@@ -67,9 +67,10 @@ fun ActivitiesRow(item: ActivitiesItem) {
                 Spacer(modifier = Modifier.width(2.dp))
                 Text(
                     when (item.type) {
-                        ActivitiyType.Like -> "Liked your post"
-                        ActivitiyType.Comment -> "commented on your post"
-                        ActivitiyType.Follow -> "started following you"
+                        ActivityType.Like -> "Liked your post"
+                        ActivityType.Comment -> "commented on your post"
+                        ActivityType.Follow -> "started following you"
+                        ActivityType.FollowBack -> "requested to follow yuo"
                     }
                 )
 
@@ -79,7 +80,11 @@ fun ActivitiesRow(item: ActivitiesItem) {
         }
         Spacer(modifier = Modifier.weight(1f))
 
-        if (item.type == ActivitiyType.Follow) {
+        if (item.type == ActivityType.FollowBack) {
+            Button(onClick = {})
+            { Text("Confirm", fontSize = 12.sp) }
+        }
+        else if (item.type == ActivityType.Follow) {
             Button(onClick = {})
             { Text("Follow back", fontSize = 12.sp) }
         }
